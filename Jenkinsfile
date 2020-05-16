@@ -14,7 +14,7 @@ pipeline {
 
         stage('Gradle Build') {
             steps {
-                sh 'java'
+                sh 'java -version'
                 sh 'mkdir /tmp'
                 sh './gradlew build'
             }
