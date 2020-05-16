@@ -12,13 +12,11 @@ pipeline {
 
     stages {
 
-        stages {
-
-            stage('Gradle Build') {
-                steps {
-                    sh './gradlew build'
-                }
+        stage('Gradle Build') {
+            steps {
+                sh './gradlew build'
             }
         }
+
     }
 }
