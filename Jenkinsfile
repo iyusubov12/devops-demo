@@ -16,7 +16,7 @@ pipeline {
             steps {
                 sh 'java -version'
                 sh 'mkdir -p  /tmp'
-                sh './gradlew build --debug'
+                sh './gradlew build -x test'
             }
         }
 
