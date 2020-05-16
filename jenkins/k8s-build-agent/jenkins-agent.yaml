@@ -9,16 +9,15 @@ spec:
       volumeMounts:
         - name: docker
           mountPath: /var/run/docker.sock # We use the k8s host docker engine
-#      resources:  # limits the resources your build contaienr
-#        requests:
-#          memory: "100M"
-#          cpu: "50m"
-#        limits:
-#          memory: "500M"
-#    - name: docker
-#      image: docker:18.06.1
-#      command: ["tail", "-f", "/dev/null"]
-#      imagePullPolicy: Always
+      resources:  # limits the resources your build contaienr
+        requests:
+          memory: "1Gi"
+        limits:
+          memory: "1Gi"
+    - name: docker
+      image: docker:18.06.1
+      command: ["tail", "-f", "/dev/null"]
+      imagePullPolicy: Always
   volumes:
     - name: docker
       hostPath:
