@@ -17,6 +17,10 @@ spec:
           cpu: "50m"
         limits:
           memory: "500M"
+    - name: docker
+      image: docker:18.06.1
+      command: ["tail", "-f", "/dev/null"]
+      imagePullPolicy: Always
   volumes:
     - name: docker
       hostPath:
