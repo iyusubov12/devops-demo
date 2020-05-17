@@ -1,4 +1,8 @@
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
+
 plugins {
+	id 'com.bmuschko.docker-remote-api' version '6.1.2'
 	id 'org.springframework.boot' version '2.2.6.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
@@ -26,3 +30,22 @@ test {
 task sayHello{
 	print("Hello Gradle")
 }
+
+task copyDockerFiles(type: Copy, dependsOn: assemble) {
+	from 'src/docker'
+	from "${project.buildDir}/libs"
+	into { "${project.buildDir}/docker" }
+	include "*"
+	exclude "**/*.yml"
+}
+
+task dockerBuild(type: DockerBuildImage, dependsOn: copyDockerFiles) {
+	inputDir.set(file("${project.buildDir}/docker"))
+	images.add("gcr.io/ingress-lms-276014/devops-demo:3.0")
+}
+
+task dockerPush(type: DockerPushImage, dependsOn: dockerBuild) {
+	images.add("gcr.io/ingress-lms-276014/devops-demo:3.0")
+}
+
+

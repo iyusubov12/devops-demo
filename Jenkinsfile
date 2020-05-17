@@ -21,5 +21,11 @@ pipeline {
             }
         }
 
+        stage('Docker Push') {
+            steps {
+                sh "./gradlew dockerPush"
+            }
+        }
+
     }
 }
