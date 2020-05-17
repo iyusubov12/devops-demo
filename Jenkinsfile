@@ -6,8 +6,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "echo Hello Jenkins!"
-                sh "hostname"
+                sh "./gradlew build"
             }
         }
 
