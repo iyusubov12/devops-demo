@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-demo
+spec:
+  selector:
+    matchLabels:
+      app: devops-demo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: devops-demo
+    spec:
+      containers:
+        - name: devops-demo
+          image: gcr.io/ingress-lms/devops-demo:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+
