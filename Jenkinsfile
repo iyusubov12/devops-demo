@@ -40,11 +40,11 @@ pipeline {
             }
         }
 
-        stage('Docker Push') {
-            steps {
-                sh "./gradlew dockerPush"
-            }
-        }
+//        stage('Docker Push') {
+//            steps {
+//                sh "./gradlew dockerPush"
+//            }
+//        }
 
     }
 }
