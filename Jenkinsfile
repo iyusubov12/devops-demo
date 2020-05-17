@@ -22,7 +22,6 @@ pipeline {
 
         stage('Auth in Google Container Registry') {
             steps {
-                sh ("gcloud -v")
                 withCredentials([
                         file(credentialsId: 'ingress-lms-276014', variable: 'GCLOUD_SECURITY_FILE')
                 ]) {
