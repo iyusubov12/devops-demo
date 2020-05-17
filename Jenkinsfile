@@ -14,6 +14,19 @@ pipeline {
 
     stages {
 
+        stage('Auth in Google Container Registry') {
+            steps {
+                withCredentials([
+                        file(credentialsId: 'ingress-lms-276014', variable: 'GCLOUD_SECURITY_FILE')
+                ]) {
+                    sh('echo "Activate account"')
+                    sh('gcloud -q auth activate-service-account --key-file ${GCLOUD_SECURITY_FILE}')
+                    sh('gcloud -q config set project ingress-lms')
+                    sh('gcloud -q auth configure-docker')
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 sh "mkdir -p /tmp"
